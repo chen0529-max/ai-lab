@@ -39,7 +39,7 @@
 
 ![VSCode插件界面截图](./screenshots/extensions_1.jpg)
 
-![DSH终端启动交互截图](./screenshots/dsh_terminal_start .jpg)
+![DSH终端启动截图](./screenshots/dsh_terminal_start .jpg)
 
 ---
 
