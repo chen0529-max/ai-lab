@@ -1,28 +1,27 @@
-# Task09 异常捕获 try-except
+# Task08 文件路径处理
 ## 任务目标
-学习Python异常捕获机制，掌握 try、except、else、finally、raise 的用法；区分不同异常类型，实现程序出错时友好提示、不直接崩溃。
-
-## 文件说明
-- demo_file_try.py：文件读取示例，捕获 FileNotFoundError（文件不存在异常）
-- demo_calc_try.py：除法运算，分别捕获 ValueError（输入不是数字）、ZeroDivisionError（除零）
-- demo_all_except.py：使用 Exception 通用捕获异常，查看错误详情
-- demo_raise.py：使用 raise 主动抛出异常，限制非法输入
+学习Python os.path模块，理解**脚本所在目录**和**终端工作目录**的区别，解决文件保存位置错乱的问题。
 
 ## 核心知识点
-1. `try`：存放**有可能报错**的代码；一旦里面出错，立刻跳出try块
-2. `except 指定错误类型`：捕获对应类型的异常，自定义错误提示（推荐写具体异常，不滥用万能捕获）
-3. `else`：只有 try 里面代码**没有任何报错**的时候，才会执行
-4. `finally`：无论代码成功还是报错，这一段代码一定会执行，常用于资源清理
-5. `raise`：手动主动抛出异常，用来拦截不符合规则的数据
+1. `__file__`：内置变量，代表当前`.py`脚本文件。
+2. `os.path.abspath(__file__)`：获取脚本完整绝对路径。
+3. `os.path.dirname()`：从完整路径提取文件夹路径。
+4. `os.getcwd()`：获取终端当前所在目录。
+5. `os.path.join(文件夹,文件名)`：安全拼接路径，自动适配不同操作系统斜杠。
 
-## 运行截图
-![task09_1_file](task09_1_file.png)
-![task09_2_calc_raise](task09_2_calc_raise.png)
+## 代码文件
+path_demo.py：打印两类目录对比，并且在脚本所在目录生成test.txt文件。
 
-## 踩坑记录
-1. try 块不要塞过多无关代码，只放容易出错的片段
-2. 空 `except:` 不推荐，无法定位错误类型，作业优先使用指定异常捕获
-3. raise 抛出的异常如果没有写except接住，程序依然会终止并打印报错信息
+## 运行步骤
+1. 在VSCode打开终端，运行：`python path_demo.py`
+2. 观察控制台打印的两组目录，本次运行时终端打开目录正好是task08文件夹，因此脚本所在目录和终端工作目录相同。
+3. 若切换终端到上级AI-Lab目录再运行代码，两个路径就会不一样，但代码依旧会在task08生成test.txt，不受终端位置影响。
+4. 查看task08文件夹，里面自动生成test.txt
 
-## 总结
-异常捕获可以提升程序鲁棒性，避免用户非法输入、文件缺失等情况直接让程序崩溃；raise 用于主动校验数据，把不符合业务规则的情况变成异常。
+## 运行结果
+![运行终端截图](task08_run.png.jpg)
+![生成txt文件](task08_file.png.jpg)
+
+- 控制台输出脚本路径、脚本文件夹、终端工作目录
+- test.txt生成在task08文件夹，不会跑到外层AI-Lab目录
+- test.txt内容：
